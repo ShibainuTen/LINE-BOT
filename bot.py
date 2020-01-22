@@ -60,7 +60,8 @@ def handle_message(event):
     """
     # 返信内容
     text = get_reply(event.message.text) # or get_hiragana(event.message.image)
-
+    
+    text = 'Imageイベント'
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))
 
