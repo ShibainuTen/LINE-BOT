@@ -65,7 +65,7 @@ def handle_message(event):
     api.reply_message(event.reply_token, TextSendMessage(text))    
 
 
-@handler.add(MessageEvent, ImageMessage)
+@handler.add(MessageEvent,message=ImageMessage)
 def handle_image(event):
     """
     メッセージハンドラ
