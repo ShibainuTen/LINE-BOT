@@ -50,10 +50,23 @@ def handle(event):
     :param event: イベント
     """
     api.reply_message(event.reply_token, event.message)
+    
+
+@handler.add(MessageEvent, TextMessage)
+def handle_message(event):
+    """
+    メッセージハンドラ
+    :param event: イベント
+    """
+    # 返信内容
+    text = get_reply(event.message.text)
+
+    # 返信する
+    api.reply_message(event.reply_token, TextSendMessage(text))    
 
 
 @handler.add(MessageEvent, ImageMessage)
-def handle_message(event):
+def handle_image(event):
     """
     メッセージハンドラ
     :param event: イベント
