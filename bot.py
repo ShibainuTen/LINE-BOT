@@ -25,6 +25,9 @@ handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 # 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
 yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
 
+# modelはグローバルで宣言し、初期化しておく
+model = None
+
 @app.route('/callback', methods=['POST'])
 def callback():
     """
@@ -92,7 +95,15 @@ def get_jagge(image)
     """
     モデルの読み込み
     """
+    from keras.models import load_model
     
+    im = Image.open(image_id)
+    
+    blood = ""
+    
+    # 一番初めだけmodelロード
+    if model is None:
+        model = load_model('/acc_77-.h5')
     
 
 def get_reply(text):
