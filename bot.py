@@ -7,7 +7,7 @@ import flask
 import linebot
 import requests
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
 
 """
 BOTっぽい何か
@@ -51,7 +51,7 @@ def handle(event):
     """
     api.reply_message(event.reply_token, event.message)
     
-
+# テキストイベント
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     """
@@ -64,7 +64,7 @@ def handle_message(event):
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))    
 
-
+# 画像イベント
 @handler.add(MessageEvent,message=ImageMessage)
 def handle_image(event):
     """
@@ -74,7 +74,26 @@ def handle_image(event):
     text = '*****識別中*****'
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))
+    
+    image_id = event.message.id
+    
+    # image_idから画像のバイナリデータを取得
+    message_content = line_bot_api.get_message_content(image_id)
 
+    with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as f:
+        # バイナリを1024バイトずつ書き込む
+        for chunk in message_content.iter_content():
+            f.write(chunk)
+            
+    get_jagge(image_id)        
+
+    
+def get_jagge(image)
+    """
+    モデルの読み込み
+    """
+    
+    
 
 def get_reply(text):
     """
