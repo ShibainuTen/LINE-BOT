@@ -71,7 +71,7 @@ def handle_image(event):
     メッセージハンドラ
     :param event: イベント
     """    
-    text = 'Imageイベント'
+    text = '*****識別中*****'
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))
 
@@ -82,7 +82,7 @@ def get_reply(text):
     :param text: 受信内容
     :return: 返信内容
     """
-    return '****識別中****'
+    return '****画像を送ってください！！！****'
 
 if __name__ == '__main__':
     app.run()
