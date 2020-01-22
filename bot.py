@@ -52,7 +52,7 @@ def handle(event):
     api.reply_message(event.reply_token, event.message)
     
 
-@handler.add(MessageEvent, TextMessage)
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     """
     メッセージハンドラ
@@ -70,10 +70,7 @@ def handle_image(event):
     """
     メッセージハンドラ
     :param event: イベント
-    """
-    # 返信内容
-    text = get_reply(event.message.text) # or get_hiragana(event.message.image)
-    
+    """    
     text = 'Imageイベント'
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))
