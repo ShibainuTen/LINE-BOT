@@ -3,7 +3,7 @@ import re
 import bs4
 import flask
 import linebot
-import requests ,json, os, io, cv2
+import requests ,json, os, io
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
 import numpy as np
