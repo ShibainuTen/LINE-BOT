@@ -146,7 +146,7 @@ def get_text_by_ms(image_url):
     text = blood
     return text
     
-def get_jagge(img_nad)
+def get_jagge(img_nad):
     """
     モデルの読み込み
     """
