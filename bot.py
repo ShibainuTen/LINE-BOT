@@ -48,16 +48,7 @@ def callback():
         flask.abort(400)
 
     return 'OK'
-    
-
-@handler.default()
-def handle(event):
-    """
-    デフォルトハンドラ
-    :param event: イベント
-    """
-    api.reply_message(event.reply_token, event.message)
-    
+        
 # テキストイベント
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -66,12 +57,9 @@ def handle_message(event):
     :param event: イベント
     """
     print('**********テキストイベント**********')
-    
-    # 返信内容
-    text = get_reply(event.message.text)
-
+   
     # 返信する
-    api.reply_message(event.reply_token, TextSendMessage(text))    
+    api.reply_message(event.reply_token, TextSendMessage('****画像を送ってもらえませんか****'))    
 
 # 画像イベント
 @handler.add(MessageEvent,message=ImageMessage)
