@@ -11,12 +11,9 @@
     "LINE_CHANNEL_ACCESS_TOKEN": {
       "description": "LINE Channel Access Token"
     },
-    "YAHOO_JAPAN_WEB_SERVICE_APPLICATION_ID": {
-      "description": "Yahoo! JAPAN Web Service Application ID"
-    },
     "DEBUG": {
       "description": "Whether to debug",
-      "value": "False"
+      "value": "True"
     }
   }
 }
