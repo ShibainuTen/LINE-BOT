@@ -25,7 +25,7 @@ api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
 # 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
-yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
+#yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
 
 # modelはグローバルで宣言し、初期化しておく
 model = None
