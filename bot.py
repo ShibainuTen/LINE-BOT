@@ -9,6 +9,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMess
 import numpy as np
 from keras.preprocessing.image import img_to_array, load_img
 
+print('**********packageimport**********')
+
 """
 BOTっぽい何か
 """
@@ -28,6 +30,8 @@ yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
 # modelはグローバルで宣言し、初期化しておく
 model = None
 
+print('**********前準備**********')
+
 @app.route('/callback', methods=['POST'])
 def callback():
     """
@@ -44,7 +48,7 @@ def callback():
         flask.abort(400)
 
     return 'OK'
-
+    
 
 @handler.default()
 def handle(event):
@@ -61,6 +65,8 @@ def handle_message(event):
     メッセージハンドラ
     :param event: イベント
     """
+    print('**********テキストイベント**********')
+    
     # 返信内容
     text = get_reply(event.message.text)
 
@@ -74,6 +80,9 @@ def handle_image(event):
     メッセージハンドラ
     :param event: イベント
     """    
+    
+    print('**********イメージイベント**********')
+    
     text = '*****識別中*****'
     
     # 返信する
