@@ -99,7 +99,7 @@ def getImageLine(id):
     line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
 
     # 画像の取得
-    result = requests.get(line_url, headers=header)
+    result = requests.get(line_url)#, headers=header)
     print(result)
 
     # 画像の保存
