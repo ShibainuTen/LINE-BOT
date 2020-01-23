@@ -3,7 +3,7 @@ import re
 import bs4
 import flask
 import linebot
-import requests ,json, os, io
+import requests ,json, os, io, cv2
 from io import BytesIO
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
@@ -120,17 +120,26 @@ def getImageLine(id):
 def get_text_by_ms(image_url):
 
     # 90行目で保存した url から画像を書き出す。
-    image = (image_url)
-    img = img_to_array(load_img(image,target_size=(256,256)))
+    #image = (image_url)
+    #img = img_to_array(load_img(image,target_size=(256,256)))
     
     # 0-1に変換
-    img_nad = (img_to_array(img)/255)
+    #img_nad = (img_to_array(img)/255)
 
     # 4次元配列に
-    img_nad = img_nad[None, ...]
+    #img_nad = img_nad[None, ...]
     
     # get_jaggeに渡す
-    blood = get_jagge(img_nad)
+    # cv2型
+    image = cv2.imread(image_url)
+    if image is None:
+        print("Not open")
+    b,g,r = cv2.split(image)
+    image = cv2.merge([r,g,b])
+    img = cv2.resize(image,(256,256))
+    img=np.expand_dims(img,axis=0)
+    
+    blood = get_jagge(img)
     
     # 「この画像の判定結果は・・・」
     api.reply_message(event.reply_token, '****この画像の判定結果は****')
