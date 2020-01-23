@@ -11,6 +11,8 @@ gunicorn = "==19.9.0"
 line-bot-sdk = "==1.13.0"
 requests = ">=2.20.0"
 Flask = ">=1.0.0"
+numpy = "1.17.4"
+Keras-Preprocessing = "==1.1.0"
 
 [requires]
 python_version = "3.6.8"
