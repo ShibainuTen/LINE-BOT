@@ -27,7 +27,7 @@ handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
 header = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer " + YOUR_CHANNEL_ACCESS_TOKEN
+    "Authorization": "Bearer " + os.environ['LINE_CHANNEL_ACCESS_TOKEN']
 }
 
 # 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
