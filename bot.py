@@ -172,19 +172,11 @@ def get_jagge(img_nad):
     if probability < 0.7:
         blood = '犬じゃないと思われます'
         return blood 
-    else
+    else:
         # 辞書型:labelからvalueを取得して値を返す
         blood = label.get(np.argmax(predict))
         
         return blood,probabilty
-
-def get_reply(text):
-    """
-    返信内容を取得する
-    :param text: 受信内容
-    :return: 返信内容
-    """
-    return '****画像を送ってください！！！****'
 
 if __name__ == '__main__':
     app.run()
