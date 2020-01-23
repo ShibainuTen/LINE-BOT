@@ -25,6 +25,11 @@ app.debug = bool(os.environ['DEBUG'])
 api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
+header = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + YOUR_CHANNEL_ACCESS_TOKEN
+}
+
 # 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
 #yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
 
@@ -100,7 +105,7 @@ def getImageLine(id):
     line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
 
     # 画像の取得
-    result = requests.get(line_url)#, headers=header)
+    result = requests.get(line_url, headers=header)
     print(result)
 
     # 画像の保存
