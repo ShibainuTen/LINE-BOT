@@ -129,6 +129,7 @@ def get_text_by_ms(image_url):
     # 4次元配列に
     img_nad = img_nad[None, ...]
     
+    # get_jaggeに渡す
     blood = get_jagge(img_nad)
     
     # 「この画像の判定結果は・・・」
