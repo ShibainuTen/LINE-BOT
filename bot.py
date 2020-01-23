@@ -96,10 +96,10 @@ def handle_image(event):
             TextSendMessage(text=image_text),
         ]
 
-        reply_message(event, messages)
+        api.reply_message(event, messages)
 
     except Exception as e:
-        reply_message(event, TextSendMessage(text='エラーが発生しました'))
+        api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
 
 def getImageLine(id):
 
