@@ -11,7 +11,6 @@ Python 3.7
 ## 使用サービス
 * [Heroku](https://www.heroku.com/)
 * [LINE Messaging API](https://developers.line.me/ja/services/messaging-api/)
-* [日本語形態素解析 (Yahoo! JAPAN Webサービス)](https://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html)
 
 ## 機能
 * 暴言が来たら、『なんだと(# ﾟДﾟ)』と返す
@@ -26,5 +25,4 @@ https://{アプリ名}.herokuapp.com/callback
 |:--:|:--:|
 |`LINE_CHANNEL_SECRET`|Channel Secret ([LINE Messaging API](https://developers.line.me/ja/services/messaging-api/))|
 |`LINE_CHANNEL_ACCESS_TOKEN`|アクセストークン ([LINE Messaging API](https://developers.line.me/ja/services/messaging-api/))|
-|`YAHOO_JAPAN_WEB_SERVICE_APPLICATION_ID`|アプリケーションID ([Yahoo! JAPAN Webサービス](https://developer.yahoo.co.jp/start/))|
 |`DEBUG`|デバッグするかどうか (`True`, `False` / デフォルト値: `False`)|
