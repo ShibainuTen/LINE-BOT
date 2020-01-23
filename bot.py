@@ -113,7 +113,7 @@ def getImageLine(id):
 
     return filename
             
-    def get_text_by_ms(image_url):
+def get_text_by_ms(image_url):
 
     # 90行目で保存した url から画像を書き出す。
     image = (image_url)
