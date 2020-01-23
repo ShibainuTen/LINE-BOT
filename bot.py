@@ -4,6 +4,7 @@ import bs4
 import flask
 import linebot
 import requests ,json, os, io
+from io import BytesIO
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
 import numpy as np
@@ -109,7 +110,7 @@ def getImageLine(id):
     print(result)
 
     # 画像の保存
-    im = Image.open(result.content)#BytesIO(result.content))
+    im = Image.open(BytesIO(result.content))
     filename = '/tmp/' + id + '.jpg'
     print(filename)
     im.save(filename)
