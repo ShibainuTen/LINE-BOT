@@ -66,7 +66,7 @@ def handle_message(event):
     print('**********テキストイベント**********')
    
     # 返信する
-    api.reply_message(event.reply_token, TextSendMessage('****画像を送ってもらえませんか****'))    
+    api.reply_message(event.reply_token, TextSendMessage('画像を送ってください'))    
 
 # 画像イベント
 @handler.add(MessageEvent,message=ImageMessage)
@@ -78,7 +78,7 @@ def handle_image(event):
     
     print('**********イメージイベント**********')
     
-    text = '*****識別中*****'
+    text = '－－－識別中－－－'
     
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))
