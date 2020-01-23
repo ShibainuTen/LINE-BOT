@@ -1,13 +1,13 @@
 # coding=utf-8
-import os
 import re
-
 import bs4
 import flask
 import linebot
-import requests
+import requests ,json, os, io, cv2
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
+import numpy as np
+from keras.preprocessing.image import img_to_array, load_img
 
 """
 BOTっぽい何か
@@ -75,29 +75,77 @@ def handle_image(event):
     :param event: イベント
     """    
     text = '*****識別中*****'
+    
     # 返信する
     api.reply_message(event.reply_token, TextSendMessage(text))
     
-    image_id = event.message.id
-    
-    # image_idから画像のバイナリデータを取得
-    message_content = line_bot_api.get_message_content(image_id)
+    # 画像の取得
+    print("handle_image:", event)
 
-    with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as f:
-        # バイナリを1024バイトずつ書き込む
-        for chunk in message_content.iter_content():
-            f.write(chunk)
+    message_id = event.message.id
+    getImageLine(message_id)
+
+    try:
+        image_text = get_text_by_ms(image_url=getImageLine(message_id))
+
+        messages = [
+            TextSendMessage(text=image_text),
+        ]
+
+        reply_message(event, messages)
+
+    except Exception as e:
+        reply_message(event, TextSendMessage(text='エラーが発生しました'))
+
+def getImageLine(id):
+
+    line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
+
+    # 画像の取得
+    result = requests.get(line_url, headers=header)
+    print(result)
+
+    # 画像の保存
+    im = Image.open(BytesIO(result.content))
+    filename = '/tmp/' + id + '.jpg'
+    print(filename)
+    im.save(filename)
+
+    return filename
             
-    get_jagge(image_id)        
+    def get_text_by_ms(image_url):
 
+    # 90行目で保存した url から画像を書き出す。
+    image = (image_url)
+    img = img_to_array(load_img(image,target_size=(256,256)))
     
-def get_jagge(image)
+    # 0-1に変換
+    img_nad = (img_to_array(img)/255)
+
+    # 4次元配列に
+    img_nad = img_nad[None, ...]
+    
+    blood = get_jagge(img_nad)
+    
+    # 「この画像の判定結果は・・・」
+    api.reply_message(event.reply_token, '****この画像の判定結果は****')
+    
+    if probability:
+        # 返信する
+        api.reply_message(event.reply_token, '{:.2%}'.format(probabilty))    
+        
+    text = blood
+    return text
+    
+def get_jagge(img_nad)
     """
     モデルの読み込み
     """
     from keras.models import load_model
     
-    im = Image.open(image_id)
+    
+    # グローバル変数の取得
+    global model
     
     blood = ""
     
@@ -105,6 +153,21 @@ def get_jagge(image)
     if model is None:
         model = load_model('/acc_77-.h5')
     
+    predict = model.predict(img_nad)
+    
+    # 表示したいクラス
+    label = {0:'コーギー',1:'柴犬',2:'パグ',3:'キャバリア',4:'チワワ',5:'ダックスフンド',6:'プードル',}
+    
+    probability = np.max(predict)
+    # 犬の確率判定 70%に満たない場合弾く
+    if probability < 0.7:
+        blood = '犬じゃないと思われます'
+        return blood 
+    else
+        # 辞書型:labelからvalueを取得して値を返す
+        blood = label.get(np.argmax(predict))
+        
+        return blood,probabilty
 
 def get_reply(text):
     """
