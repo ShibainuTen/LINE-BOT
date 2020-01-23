@@ -104,7 +104,7 @@ def getImageLine(id):
     print(result)
 
     # 画像の保存
-    im = Image.open(BytesIO(result.content))
+    im = Image.open(result.content)#BytesIO(result.content))
     filename = '/tmp/' + id + '.jpg'
     print(filename)
     im.save(filename)
