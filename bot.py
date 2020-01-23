@@ -8,7 +8,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
 import numpy as np
 from keras.preprocessing.image import img_to_array, load_img
-from PIL import *
+from PIL import Image
 
 print('**********packageimport**********')
 
