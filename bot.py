@@ -161,7 +161,7 @@ def get_jagge(img_nad):
         
         return blood,probabilty
     
-def getImageLine(message_id):
+#def getImageLine(message_id):
 
     #line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
     
