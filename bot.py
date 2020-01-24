@@ -87,11 +87,14 @@ def handle_image(event):
     print("handle_image:", event)
 
     message_id = event.message.id
-    getImageLine(message_id)
-
+    message_content = line_bot_api.get_message_content(message_id)
+    
+    image = BytesIO(message_content.content)
+    #getImageLine(message_id)
+    
     try:
-        image_text = get_text_by_ms(image_url=getImageLine(message_id))
-
+        image_text = get_text_by_ms(image)
+        
         messages = [
             TextSendMessage(text=image_text),
         ]
@@ -100,27 +103,11 @@ def handle_image(event):
 
     except Exception as e:
         api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
-
-def getImageLine(id):
-
-    line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
-
-    # 画像の取得
-    result = requests.get(line_url, headers=header)
-    print(result)
-
-    # 画像の保存
-    im = Image.open(BytesIO(result.content))
-    filename = '/tmp/' + id + '.jpg'
-    print(filename)
-    im.save(filename)
-
-    return filename
             
-def get_text_by_ms(image_url):
+def get_text_by_ms(image):
 
     # 90行目で保存した url から画像を書き出す。
-    image = (image_url)
+    #image = (image_url)
     img = img_to_array(load_img(image,target_size=(256,256)))
     
     # 0-1に変換
@@ -128,15 +115,6 @@ def get_text_by_ms(image_url):
 
     # 4次元配列に
     img_nad = img_nad[None, ...]
-   
-    # cv2型
-    #image = cv2.imread(image_url)
-    #if image is None:
-    #    print("Not open")
-    #b,g,r = cv2.split(image)
-    #image = cv2.merge([r,g,b])
-    #img = cv2.resize(image,(256,256))
-    #img=np.expand_dims(img,axis=0)
     
     #get_jaggeに渡す
     blood = get_jagge(img)
@@ -182,6 +160,24 @@ def get_jagge(img_nad):
         blood = label.get(np.argmax(predict))
         
         return blood,probabilty
+    
+def getImageLine(message_id):
+
+    #line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
+    
+    
+    # 画像の取得
+    #result = requests.get(line_url, headers=header)
+    #result = line
+    #print(result)
+
+    # 画像の保存
+    #im = Image.open(BytesIO(result.content))
+    #filename = '/tmp/' + id + '.jpg'
+    #print(filename)
+    #im.save(filename)
+
+    #return filename
 
 if __name__ == '__main__':
     app.run()
