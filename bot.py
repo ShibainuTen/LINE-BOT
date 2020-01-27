@@ -3,7 +3,8 @@ import re
 import bs4
 import flask
 import linebot
-import requests ,json, os, io,cv2
+import requests ,json, os, io
+import cv2
 import base64
 from io import BytesIO
 from linebot.exceptions import InvalidSignatureError
