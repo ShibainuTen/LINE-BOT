@@ -30,7 +30,7 @@ header = {
     "Content-Type": "application/json",
     "Authorization": "Bearer " + os.environ['LINE_CHANNEL_ACCESS_TOKEN']
 }
-
+header = base64.b64encode(img_byte).decode("utf-8")
 # 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
 #yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
 
