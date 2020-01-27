@@ -30,6 +30,7 @@ handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 header = {
     "Content-Type": "application/json",
     "Authorization":  "Bearer " + os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+}
 
 # modelはグローバルで宣言し、初期化しておく
 model = None
