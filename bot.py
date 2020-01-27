@@ -4,6 +4,7 @@ import bs4
 import flask
 import linebot
 import requests ,json, os, io
+import base64
 from io import BytesIO
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage,ImageSendMessage
