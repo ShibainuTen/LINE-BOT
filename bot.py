@@ -29,7 +29,7 @@ img_byte = base64.b64encode(api).decode("utf-8")
 
 header = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer " + img_byte
+    "Authorization": img_byte
 }
 
 # 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
