@@ -17,6 +17,7 @@ Keras = "==2.2.4"
 Keras-Applications = ">=1.0.8"
 tensorflow = "==1.14.0"
 Pillow = ">=6.21"
+opencv-python = ">=4.0.1.23"
 
 [requires]
 python_version = "3.6.8"
