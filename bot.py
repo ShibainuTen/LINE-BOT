@@ -26,15 +26,10 @@ app.debug = bool(os.environ['DEBUG'])
 
 api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
-img_byte = base64.b64encode(api).decode("utf-8")
 
 header = {
     "Content-Type": "application/json",
-    "Authorization": img_byte
-}
-
-# 日本語形態素解析 (Yahoo! JAPAN Webサービス) のURL
-#yahoo_url = 'http://jlp.yahooapis.jp/DAService/V1/parse'
+    "Authorization":  "Bearer " + os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 
 # modelはグローバルで宣言し、初期化しておく
 model = None
