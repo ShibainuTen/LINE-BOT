@@ -3,6 +3,7 @@ import linebot
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import ImageMessage, MessageEvent, TextMessage, TextSendMessage
+import base64
 import requests, json, os, io
 from io import BytesIO
 from PIL import Image
@@ -93,8 +94,10 @@ def getImageLine(id):
 def get_text_by_ms(image_url):
 
     # 90行目で保存した url から画像を書き出す。
-    img_path = Image.open(image)
-    img = img_to_array(load_img(img_path, target_size=(256,256)))
+    img = Image.open(image_url)
+    img_byte = im.read()
+    img_content = base64.b64encode(img_byte)
+    img = img_to_array(load_img(img_content, target_size=(256,256)))
     detect_who(img)
     
     text = face
