@@ -63,7 +63,7 @@ def handle_image(event):
     getImageLine(message_id)
 
     try:
-        image_text = get_text_by_ms(filename,image_url=getImageLine(message_id))
+        image_text = get_text_by_ms(image_url=getImageLine(message_id))
 
         messages = [
             TextSendMessage(text=image_text),
@@ -91,7 +91,7 @@ def getImageLine(id):
     return filename,result
 
 
-def get_text_by_ms(image_url,result):
+def get_text_by_ms(result):
 
     # 90行目で保存した url から画像を書き出す。
     img = requests.get(result,stream=True) 
