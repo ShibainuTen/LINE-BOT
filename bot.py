@@ -134,7 +134,7 @@ def get_text_by_ms(image):
     
     # OpenCVを使わない場合
     # 画像の読込
-    img_path = image
+    img_path = Image.open(image)
     print(image)
     img = img_to_array(load_img(img_path, target_size=(256,256)))
 
