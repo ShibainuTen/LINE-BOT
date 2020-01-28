@@ -88,7 +88,7 @@ def getImageLine(id):
     print(filename)
     im.save(filename)
 
-    return filename
+    return result
 
 
 def get_text_by_ms(result):
