@@ -1,4 +1,5 @@
 from flask import Flask, request, abort
+import linebot
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import ImageMessage, MessageEvent, TextMessage, TextSendMessage
@@ -110,13 +111,20 @@ def detect_who(img):
     faceNumLabel=np.argmax(predict)
 
     if faceNumLabel == 0:
-        face = "オリーブオイル顔"
+        face = "コーギー"
     elif faceNumLabel == 1:
-        face = "塩顔"
+        face = "柴犬"
     elif faceNumLabel == 2:
-        face = "しょうゆ顔"
+        face = "パグ"
     elif faceNumLabel == 3:
-        face = "ソース顔"
+        face = "キャバリア"
+    elif faceNumLabel == 4:
+        face = "チワワ"
+    elif faceNumLabel == 5:
+        face = "ダックスフンド"
+    elif faceNumLabel == 6:
+        face = "プードル" 
+    
     return face
 
 if __name__ == "__main__":
