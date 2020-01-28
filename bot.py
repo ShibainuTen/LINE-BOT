@@ -85,8 +85,9 @@ def getImageLine(id):
     
     # 画像を開く？？
     if result.status_code == 200:
-        with open(file_name, 'wb') as f:
+        with open(file_name, 'wb') as file:
             file.write(result.content)
+            print('***file****',file)
     
     # 画像の保存
     #im = Image.open(BytesIO(result.content))
