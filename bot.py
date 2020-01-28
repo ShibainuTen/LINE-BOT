@@ -4,7 +4,7 @@ import bs4
 import flask
 import linebot
 import requests ,json, os, io
-import cv2
+#import cv2
 import base64
 from io import BytesIO
 from linebot.exceptions import InvalidSignatureError
@@ -86,7 +86,7 @@ def handle_image(event):
     print("handle_image:", event)
 
     message_id = event.message.id
-    getImageLine(message_id)
+    #getImageLine(message_id)
     #message_content = api.get_message_content(message_id)
     
     #image = BytesIO(message_content.content)
@@ -124,16 +124,27 @@ def getImageLine(id):
 def get_text_by_ms(image):
 
     # 90行目で保存した url から画像を書き出す。
-    image = cv2.imread(image_url)
-    if image is None:
+    #image = cv2.imread(image_url)
+    #if image is None:
         print("Not open")
-    b,g,r = cv2.split(image)
-    image = cv2.merge([r,g,b])
-    img = cv2.resize(image,(256,256))
-    img=np.expand_dims(img,axis=0)
+    #b,g,r = cv2.split(image)
+    #image = cv2.merge([r,g,b])
+    #img = cv2.resize(image,(256,256))
+    #img=np.expand_dims(img,axis=0)
+    
+    # OpenCVを使わない場合
+    # 画像の読込
+    img_path = (image)
+    img = img_to_array(load_img(img_path, target_size=(256,256)))
+
+    # 0-1に変換
+    img_nad = (img_to_array(img)/255)
+
+    # 4次元配列に
+    img_nad = img_nad[None, ...]
     
     #get_jaggeに渡す
-    blood = get_jagge(img=img)
+    blood = get_jagge(img_nad)
     
     # 「この画像の判定結果は・・・」
     api.reply_message(event.reply_token, '****この画像の判定結果は****')
