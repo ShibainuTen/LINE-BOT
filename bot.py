@@ -74,7 +74,7 @@ def handle_image(event):
     #result = getImageLine(message_id)
     image_text = get_text_by_ms(save_path)
     print('************76*************')
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
     
     #try:
         #image_text = get_text_by_ms(save_path)
