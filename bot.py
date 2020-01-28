@@ -131,6 +131,7 @@ def get_text_by_ms(result):
     img_nad = img_nad[None, ...]
     
     predict = model.predict(img_nad)
+    print('***predict***',predict)
     faceNumLabel=np.argmax(predict)
     detect_who(faceNumLabel)
     
@@ -155,6 +156,7 @@ def detect_who(faceNumLabel):
     elif faceNumLabel == 6:
         face = "プードル" 
     
+    print('****face****',face)
     return face
 
 if __name__ == "__main__":
