@@ -81,6 +81,12 @@ def getImageLine(id):
     # 画像の取得
     result = requests.get(line_url, headers=header)
     print(result)
+    file_name = id + '.png'
+    
+    # 画像を開く？？
+    if result.status_code == 200:
+        with open(file_name, 'wb') as f:
+            file.write(result.content)
     
     # 画像の保存
     #im = Image.open(BytesIO(result.content))
@@ -88,7 +94,7 @@ def getImageLine(id):
     #print(filename)
     #im.save(filename)
 
-    return result
+    return file
 
 def get_text_by_ms(result):
 
