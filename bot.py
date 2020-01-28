@@ -74,7 +74,7 @@ def handle_image(event):
     #result = getImageLine(message_id)
     
     try:
-        image_text = get_text_by_ms(result)
+        image_text = get_text_by_ms(save_path)
 
         messages = [
             TextSendMessage(text=image_text),
