@@ -122,7 +122,7 @@ def get_text_by_ms(result):
 
     # 一番初めだけ model をロードしたい
     if model is None:
-        model = load_model('./acc_77.h5')
+        model = load_model('./acc_77-.h5')
     
     # 0-1に変換
     img_nad = (img_to_array(img)/255)
