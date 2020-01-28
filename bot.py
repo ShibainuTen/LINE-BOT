@@ -49,15 +49,13 @@ def callback():
 # テキストを受け取る部分
 @handler.add(MessageEvent, message=TextMessage)
 def handler_message(event):
-     line_bot_api.reply_message(
-         event.reply_token,
-         TextSendMessage('画像を送ってね'))
-
+     print("****handle_message****:", event)
+     line_bot_api.reply_message(event.reply_token,TextSendMessage('画像を送ってね'))
 
 # 画像を受け取る部分
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image(event):
-    print("handle_image:", event)
+    print("****handle_image****:", event)
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
 
@@ -85,13 +83,12 @@ def getImageLine(id):
     print(result)
     
     # 画像の保存
-    im = Image.open(BytesIO(result.content))
-    filename = '/tmp/' + id + '.png'
-    print(filename)
-    im.save(filename)
+    #im = Image.open(BytesIO(result.content))
+    #filename = '/tmp/' + id + '.png'
+    #print(filename)
+    #im.save(filename)
 
     return result
-
 
 def get_text_by_ms(result):
 
