@@ -114,8 +114,8 @@ def handle_image(event):
 def get_text_by_ms(result):
 
     # 90行目で保存した url から画像を書き出す。
-    img = requests.get(result,stream=True) 
-    img = img_to_array(load_img(img, target_size=(256,256)))
+    #img = requests.get(result,stream=True) 
+    img = img_to_array(load_img(result, target_size=(256,256)))
     face=""
     # グローバル変数を取得する
     global model
