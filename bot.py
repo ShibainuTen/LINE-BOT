@@ -60,10 +60,10 @@ def handle_image(event):
     print("handle_image:", event)
 
     message_id = event.message.id
-    getImageLine(message_id)
-
+    imge_url =getImageLine(message_id)
+    
     try:
-        image_text = get_text_by_ms(image_url=getImageLine(message_id))
+        image_text = get_text_by_ms(image_url)
 
         messages = [
             TextSendMessage(text=image_text),
