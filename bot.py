@@ -60,7 +60,15 @@ def handle_image(event):
     line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
 
     message_id = event.message.id
-    result =getImageLine(message_id)
+    
+     # message_idから画像のバイナリデータを取得
+    message_content = line_bot_api.get_message_content(message_id)
+
+    with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as result:
+        # バイナリを1024バイトずつ書き込む
+        for chunk in message_content.iter_content():
+            result.write(chunk)
+    #result = getImageLine(message_id)
     
     try:
         image_text = get_text_by_ms(result)
@@ -74,7 +82,7 @@ def handle_image(event):
     except Exception as e:
         line_bot_api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
 
-def getImageLine(id):
+#def getImageLine(id):
 
     #line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
 
@@ -82,15 +90,15 @@ def getImageLine(id):
     #result = requests.get(line_url, headers=header)
     #print(result)
     
-    message_id = event.message.id
+    #message_id = event.message.id
     # message_idから画像のバイナリデータを取得
-    message_content = line_bot_api.get_message_content(message_id)
+    #message_content = line_bot_api.get_message_content(message_id)
     
     # 画像を開く？？
-    if result.status_code == 200:
-        with open(Path(f"static/images/{message_id}.jpg").absolute(), 'wb') as file:
-            file.write(result.content)
-            print('***file****',file)
+    #if result.status_code == 200:
+        #with open(Path(f"static/images/{message_id}.jpg").absolute(), 'wb') as file:
+            #file.write(result.content)
+            #print('***file****',file)
     
     # 画像の保存
     #im = Image.open(BytesIO(result.content))
@@ -98,7 +106,7 @@ def getImageLine(id):
     #print(filename)
     #im.save(filename)
 
-    return file
+    #return file
 
 def get_text_by_ms(result):
 
