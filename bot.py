@@ -6,6 +6,7 @@ import requests, json, os, io
 from io import BytesIO
 from PIL import Image
 import numpy as np
+from keras.preprocessing.image import img_to_array, load_img
 from keras.models import load_model
 
 app = Flask(__name__)
