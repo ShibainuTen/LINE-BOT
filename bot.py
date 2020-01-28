@@ -96,17 +96,7 @@ def get_text_by_ms(image_url):
     # 90行目で保存した url から画像を書き出す。
     img = Image.open(image_url)
     print(img)
-    #img_byte = img.read()
-    img_content = base64.b64encode(img)
-    print(img_content)
-    img = img_to_array(load_img(img_content, target_size=(256,256)))
-    detect_who(img)
-    
-    text = face
-    return text
-
-def detect_who(img):
-
+    img = img_to_array(load_img(img, target_size=(256,256)))
     face=""
     # グローバル変数を取得する
     global model
@@ -123,7 +113,13 @@ def detect_who(img):
     
     predict = model.predict(img_nad)
     faceNumLabel=np.argmax(predict)
+    detect_who(faceNumLabel)
     
+    text = face
+    return text
+
+def detect_who(faceNumLabel):
+   
     # 「判定」
     if faceNumLabel == 0:
         face = "コーギー"
