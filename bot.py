@@ -81,21 +81,20 @@ def getImageLine(id):
     # 画像の取得
     result = requests.get(line_url, headers=header)
     print(result)
-
+    
     # 画像の保存
     im = Image.open(BytesIO(result.content))
     filename = '/tmp/' + id + '.png'
     print(filename)
     im.save(filename)
 
-    return filename
+    return filename,result
 
 
-def get_text_by_ms(image_url):
+def get_text_by_ms(image_url,result):
 
     # 90行目で保存した url から画像を書き出す。
-    img = Image.open(image_url)
-    print(img)
+    img = requests.get(result,stream=True) 
     img = img_to_array(load_img(img, target_size=(256,256)))
     face=""
     # グローバル変数を取得する
