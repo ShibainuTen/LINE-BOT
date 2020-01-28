@@ -130,11 +130,9 @@ def get_text_by_ms(result):
     predict = model.predict(img_nad)
     print('***predict***',predict)
     faceNumLabel=np.argmax(predict)
-    detect_who(faceNumLabel)
+    text = detect_who(faceNumLabel)
     
-    text = face
     return text
-
 def detect_who(faceNumLabel):
    
     # 「判定」
