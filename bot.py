@@ -14,7 +14,7 @@ print('***ライブラリのインポート***')
 
 app = Flask(__name__)
 
-api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
+line_bot_api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
 header = {
