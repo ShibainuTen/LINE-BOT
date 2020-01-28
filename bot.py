@@ -68,10 +68,10 @@ def handle_image(event):
             TextSendMessage(text=image_text),
         ]
 
-        reply_message(event, messages)
+        line_bot_api.reply_message(event, messages)
 
     except Exception as e:
-        reply_message(event, TextSendMessage(text='エラーが発生しました'))
+        line_bot_api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
 
 def getImageLine(id):
 
@@ -93,7 +93,10 @@ def getImageLine(id):
 def get_text_by_ms(image_url):
 
     # 90行目で保存した url から画像を書き出す。
-
+    img_path = Image.open(image)
+    img = img_to_array(load_img(img_path, target_size=(256,256)))
+    detect_who(img)
+    
     text = face
     return text
 
@@ -106,10 +109,17 @@ def detect_who(img):
     # 一番初めだけ model をロードしたい
     if model is None:
         model = load_model('./acc_77.h5')
+    
+    # 0-1に変換
+    img_nad = (img_to_array(img)/255)
 
-    predict = model.predict(img)
+    # 4次元配列に
+    img_nad = img_nad[None, ...]
+    
+    predict = model.predict(img_nad)
     faceNumLabel=np.argmax(predict)
-
+    
+    # 「判定」
     if faceNumLabel == 0:
         face = "コーギー"
     elif faceNumLabel == 1:
