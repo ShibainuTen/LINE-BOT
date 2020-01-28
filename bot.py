@@ -73,6 +73,7 @@ def handle_image(event):
             f.write(chunk)
     #result = getImageLine(message_id)
     image_text = get_text_by_ms(save_path)
+    print('************76*************')
     line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
     
     #try:
@@ -131,7 +132,7 @@ def get_text_by_ms(result):
     print('***predict***',predict)
     faceNumLabel=np.argmax(predict)
     text = detect_who(faceNumLabel)
-    
+    print('***text***',text)
     return text
 def detect_who(faceNumLabel):
    
