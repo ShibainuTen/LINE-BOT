@@ -19,6 +19,8 @@ app = Flask(__name__)
 line_bot_api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
+
+SRC_IMAGE_PATH = "static/images/{}.jpg"
 header = {
     "Content-Type": "application/json",
     "Authorization":  "Bearer " + os.environ['LINE_CHANNEL_ACCESS_TOKEN']
