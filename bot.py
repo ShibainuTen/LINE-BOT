@@ -126,7 +126,7 @@ def get_text_by_ms(image):
     # 90行目で保存した url から画像を書き出す。
     #image = cv2.imread(image_url)
     #if image is None:
-        print("Not open")
+    #    print("Not open")
     #b,g,r = cv2.split(image)
     #image = cv2.merge([r,g,b])
     #img = cv2.resize(image,(256,256))
@@ -134,7 +134,8 @@ def get_text_by_ms(image):
     
     # OpenCVを使わない場合
     # 画像の読込
-    img_path = Image.open(image)
+    #img_path = Image.open(image)
+    img_path = image
     print(image)
     img = img_to_array(load_img(img_path, target_size=(256,256)))
 
