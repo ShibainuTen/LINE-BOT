@@ -68,7 +68,7 @@ def handle_image(event):
     message_content = line_bot_api.get_message_content(message_id)
     save_path = Path(SRC_IMAGE_PATH.format(message_id)).absolute()
 
-    with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as result:
+    with open(save_path, "wb") as result:
         # バイナリを1024バイトずつ書き込む
         for chunk in message_content.iter_content():
             result.write(chunk)
