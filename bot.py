@@ -58,6 +58,8 @@ def handler_message(event):
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image(event):
     print("handle_image:", event)
+    
+    line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
 
     message_id = event.message.id
     result =getImageLine(message_id)
