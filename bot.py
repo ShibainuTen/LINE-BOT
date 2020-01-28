@@ -95,8 +95,10 @@ def get_text_by_ms(image_url):
 
     # 90行目で保存した url から画像を書き出す。
     img = Image.open(image_url)
-    img_byte = img.read()
-    img_content = base64.b64encode(img_byte)
+    print(img)
+    #img_byte = img.read()
+    img_content = base64.b64encode(img)
+    print(img_content)
     img = img_to_array(load_img(img_content, target_size=(256,256)))
     detect_who(img)
     
