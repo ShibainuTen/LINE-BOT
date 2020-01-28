@@ -72,13 +72,15 @@ def handle_image(event):
         for chunk in message_content.iter_content():
             f.write(chunk)
     #result = getImageLine(message_id)
+    image_text = get_text_by_ms(save_path)
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
     
-    try:
-        image_text = get_text_by_ms(save_path)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
+    #try:
+        #image_text = get_text_by_ms(save_path)
+        #line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
 
-    except Exception as e:
-        line_bot_api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
+    #except Exception as e:
+        #line_bot_api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
 
 #def getImageLine(id):
 
