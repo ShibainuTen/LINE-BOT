@@ -76,16 +76,19 @@ def handle_image(event):
 
 def getImageLine(id):
 
-    line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
+    #line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
 
     # 画像の取得
-    result = requests.get(line_url, headers=header)
-    print(result)
-    file_name = id + '.png'
+    #result = requests.get(line_url, headers=header)
+    #print(result)
+    
+    message_id = event.message.id
+    # message_idから画像のバイナリデータを取得
+    message_content = line_bot_api.get_message_content(message_id)
     
     # 画像を開く？？
     if result.status_code == 200:
-        with open(file_name, 'wb') as file:
+        with open(Path(f"static/images/{message_id}.jpg").absolute(), 'wb') as file:
             file.write(result.content)
             print('***file****',file)
     
