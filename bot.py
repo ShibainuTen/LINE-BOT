@@ -68,9 +68,9 @@ def handle_image(event):
     SRC_IMAGE_PATH = "static/images/{}.jpg"
     save_path = Path(SRC_IMAGE_PATH.format(message_id)).absolute()
 
-    with open(save_path, "wb") as result:
+    with open(save_path, "wb") as f:
         for chunk in message_content.iter_content():
-            result.write(chunk)
+            f.write(chunk)
     #result = getImageLine(message_id)
     
     try:
