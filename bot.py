@@ -9,10 +9,9 @@ import numpy as np
 from keras.preprocessing.image import img_to_array, load_img
 from keras.models import load_model
 
-app = Flask(__name__)
+print('***ライブラリのインポート***')
 
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
-YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+app = Flask(__name__)
 
 api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
@@ -25,6 +24,7 @@ header = {
 # model はグローバルで宣言し、初期化しておく
 model = None
 
+print('****前準備****')
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -41,6 +41,8 @@ def callback():
         abort(400)
 
     return 'OK'
+
+    print('****コールバック****')
 
 # テキストを受け取る部分
 @handler.add(MessageEvent, message=TextMessage)
@@ -102,7 +104,7 @@ def detect_who(img):
 
     # 一番初めだけ model をロードしたい
     if model is None:
-        model = load_model('./shiogao_model2.h5')
+        model = load_model('./acc_77.h5')
 
     predict = model.predict(img)
     faceNumLabel=np.argmax(predict)
