@@ -75,12 +75,7 @@ def handle_image(event):
     
     try:
         image_text = get_text_by_ms(save_path)
-
-        messages = [
-            TextSendMessage(text=image_text),
-        ]
-
-        line_bot_api.reply_message(event, messages)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
 
     except Exception as e:
         line_bot_api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
