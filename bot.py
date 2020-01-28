@@ -20,7 +20,6 @@ line_bot_api = linebot.LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
 handler = linebot.WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
 
 
-SRC_IMAGE_PATH = "static/images/{}.jpg"
 header = {
     "Content-Type": "application/json",
     "Authorization":  "Bearer " + os.environ['LINE_CHANNEL_ACCESS_TOKEN']
@@ -66,10 +65,10 @@ def handle_image(event):
     
     # message_idから画像のバイナリデータを取得
     message_content = line_bot_api.get_message_content(message_id)
+    SRC_IMAGE_PATH = "static/images/{}.jpg"
     save_path = Path(SRC_IMAGE_PATH.format(message_id)).absolute()
 
     with open(save_path, "wb") as result:
-        # バイナリを1024バイトずつ書き込む
         for chunk in message_content.iter_content():
             result.write(chunk)
     #result = getImageLine(message_id)
