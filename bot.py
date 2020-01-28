@@ -44,7 +44,8 @@ def callback():
     コールバック
     """
     # リクエストメッセージボディをテキスト形式で取得
-    body = flask.request.get_data(as_text=True)
+    #body = flask.request.get_data(as_text=True)
+    body = request.get_data(as_text=True)
     app.logger.info('Request body:' + body)
 
     # WebhookをHandle
