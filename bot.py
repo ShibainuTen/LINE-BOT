@@ -1,4 +1,5 @@
 from flask import Flask, request, abort
+from pathlib import Path
 import linebot
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -61,8 +62,9 @@ def handle_image(event):
 
     message_id = event.message.id
     
-     # message_idから画像のバイナリデータを取得
+    # message_idから画像のバイナリデータを取得
     message_content = line_bot_api.get_message_content(message_id)
+    save_path = Path(SRC_IMAGE_PATH.format(message_id)).absolute()
 
     with open(Path(f"static/images/{message_id}.jpg").absolute(), "wb") as result:
         # バイナリを1024バイトずつ書き込む
