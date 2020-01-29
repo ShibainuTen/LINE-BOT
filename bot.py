@@ -59,9 +59,7 @@ def handler_message(event):
 def handle_image(event):
     print("****handle_image****:", event)
     
-    # 変数の初期化
-    img = None
-    
+    # 変数の初期化    
     line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
 
     message_id = event.message.id
@@ -137,7 +135,11 @@ def get_text_by_ms(result):
     faceNumLabel=np.argmax(predict)
     text = detect_who(faceNumLabel)
     print('***text***',text)
+    
+    del img_nad,img
+    
     return text
+
 def detect_who(faceNumLabel):
    
     # 「判定」
