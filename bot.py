@@ -60,6 +60,9 @@ def handler_message(event):
 def handle_image(event):
     print("****handle_image****:", event)
     
+    # 変数の初期化
+    img = None
+    
     line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
     TextSendMessage('TextSend')
 
