@@ -60,9 +60,6 @@ def handler_message(event):
 def handle_image(event):
     print("****handle_image****:", event)
     
-    # 変数の初期化    
-    #line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
-
     message_id = event.message.id
     
     # message_idから画像のバイナリデータを取得
@@ -73,50 +70,13 @@ def handle_image(event):
     with open(save_path, "wb") as f:
         for chunk in message_content.iter_content():
             f.write(chunk)
-    #result = getImageLine(message_id)
+    
     image_text = get_text_by_ms(event,save_path)
-    #print('************76*************')
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
-    #line_bot_api.replyMessage(event.replyToken, [{type: "text", text: "--識別中--"}, {type: "text", text: get_text_by_ms(save_path)}])
-
     
-    #try:
-        #image_text = get_text_by_ms(save_path)
-        #line_bot_api.reply_message(event.reply_token,TextSendMessage(image_text))
-
-    #except Exception as e:
-        #line_bot_api.reply_message(event, TextSendMessage(text='エラーが発生しました'))
-
-#def getImageLine(id):
-
-    #line_url = 'https://api.line.me/v2/bot/message/' + id + '/content/'
-
-    # 画像の取得
-    #result = requests.get(line_url, headers=header)
-    #print(result)
-    
-    #message_id = event.message.id
-    # message_idから画像のバイナリデータを取得
-    #message_content = line_bot_api.get_message_content(message_id)
-    
-    # 画像を開く？？
-    #if result.status_code == 200:
-        #with open(Path(f"static/images/{message_id}.jpg").absolute(), 'wb') as file:
-            #file.write(result.content)
-            #print('***file****',file)
-    
-    # 画像の保存
-    #im = Image.open(BytesIO(result.content))
-    #filename = '/tmp/' + id + '.png'
-    #print(filename)
-    #im.save(filename)
-
-    #return file
-
 def get_text_by_ms(event,result):
 
     # 90行目で保存した url から画像を書き出す。
-    #img = requests.get(result,stream=True) 
     img = img_to_array(load_img(result, target_size=(256,256)))
     face=""
     # グローバル変数を取得する
@@ -140,7 +100,6 @@ def get_text_by_ms(event,result):
     del img_nad,img,model
     gc.collect()
     
-    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=text))
     return text
 
 def detect_who(faceNumLabel):
