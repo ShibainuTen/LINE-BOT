@@ -53,7 +53,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handler_message(event):
      print("****handle_message****:", event)
-     line_bot_api.reply_message(event.reply_token,TextSendMessage('画像を送ってね'))
+     line_bot_api.reply_message(event.reply_token,TextSendMessage('コーギー、パグ、柴犬、キャバリア、チワワ、ダックス、プードル'))
 
 # 画像を受け取る部分
 @handler.add(MessageEvent, message=ImageMessage)
@@ -83,7 +83,7 @@ def get_text_by_ms(event,result):
     global model
 
     # model をロードする
-    model = load_model('./acc_77-.h5')
+    model = load_model('./acc_89-.h5')
     
     # 0-1に変換
     img_nad = (img_to_array(img)/255)
