@@ -74,7 +74,7 @@ def handle_image(event):
         for chunk in message_content.iter_content():
             f.write(chunk)
     #result = getImageLine(message_id)
-    image_text = get_text_by_ms(save_path)
+    get_text_by_ms(event,save_path)
     print('************76*************')
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
@@ -112,7 +112,7 @@ def handle_image(event):
 
     #return file
 
-def get_text_by_ms(result):
+def get_text_by_ms(event,result):
 
     # 90行目で保存した url から画像を書き出す。
     #img = requests.get(result,stream=True) 
