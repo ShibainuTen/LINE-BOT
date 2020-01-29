@@ -121,9 +121,8 @@ def get_text_by_ms(result):
     # グローバル変数を取得する
     global model
 
-    # 一番初めだけ model をロードしたい
-    if model is None:
-        model = load_model('./acc_77-.h5')
+    # model をロードする
+    model = load_model('./acc_77-.h5')
     
     # 0-1に変換
     img_nad = (img_to_array(img)/255)
@@ -137,7 +136,7 @@ def get_text_by_ms(result):
     text = detect_who(faceNumLabel)
     print('***text***',text)
     
-    del img_nad,img
+    del img_nad,img,model
     gc.collect()
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=text))
