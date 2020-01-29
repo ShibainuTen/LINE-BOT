@@ -74,7 +74,7 @@ def handle_image(event):
         for chunk in message_content.iter_content():
             f.write(chunk)
     #result = getImageLine(message_id)
-    img_text = get_text_by_ms(event,save_path)
+    image_text = get_text_by_ms(event,save_path)
     #print('************76*************')
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
     #line_bot_api.replyMessage(event.replyToken, [{type: "text", text: "--識別中--"}, {type: "text", text: get_text_by_ms(save_path)}])
