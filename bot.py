@@ -53,7 +53,6 @@ def callback():
 def handler_message(event):
      print("****handle_message****:", event)
      line_bot_api.reply_message(event.reply_token,TextSendMessage('画像を送ってね'))
-     TextSendMessage('TextSend')
 
 # 画像を受け取る部分
 @handler.add(MessageEvent, message=ImageMessage)
@@ -64,7 +63,6 @@ def handle_image(event):
     img = None
     
     line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
-    TextSendMessage('TextSend')
 
     message_id = event.message.id
     
@@ -79,7 +77,7 @@ def handle_image(event):
     #result = getImageLine(message_id)
     image_text = get_text_by_ms(save_path)
     print('************76*************')
-    TextSendMessage(text=image_text)
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
     
     #try:
