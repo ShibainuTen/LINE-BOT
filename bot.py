@@ -113,7 +113,7 @@ def handle_image(event):
 
     #return file
 
-def get_text_by_ms(event,result):
+def get_text_by_ms(result):
 
     # 90行目で保存した url から画像を書き出す。
     #img = requests.get(result,stream=True) 
