@@ -11,6 +11,7 @@ from PIL import Image
 import numpy as np
 from keras.preprocessing.image import img_to_array, load_img
 from keras.models import load_model
+import gc
 
 print('***ライブラリのインポート***')
 
@@ -137,6 +138,7 @@ def get_text_by_ms(result):
     print('***text***',text)
     
     del img_nad,img
+    gc.collect()
     
     return text
 
