@@ -61,7 +61,7 @@ def handle_image(event):
     print("****handle_image****:", event)
     
     # 変数の初期化    
-    line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
 
     message_id = event.message.id
     
@@ -74,10 +74,11 @@ def handle_image(event):
         for chunk in message_content.iter_content():
             f.write(chunk)
     #result = getImageLine(message_id)
-    get_text_by_ms(event,save_path)
-    print('************76*************')
-    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
-    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=image_text))
+    #get_text_by_ms(event,save_path)
+    #print('************76*************')
+    #line_bot_api.reply_message(,event.reply_token,TextSendMessage(text=image_text))
+    line_bot_api.replyMessage(event.replyToken, [{type: "text", text: "--識別中--"}, {type: "text", text: get_text_by_ms(save_path)}])
+
     
     #try:
         #image_text = get_text_by_ms(save_path)
@@ -139,8 +140,8 @@ def get_text_by_ms(event,result):
     del img_nad,img,model
     gc.collect()
     
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=text))
-    #return text
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=text))
+    return text
 
 def detect_who(faceNumLabel):
    
