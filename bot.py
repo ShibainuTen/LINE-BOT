@@ -61,7 +61,7 @@ def handle_image(event):
     print("****handle_image****:", event)
     
     # 変数の初期化    
-    line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage('--識別中--'))
 
     message_id = event.message.id
     
@@ -140,7 +140,7 @@ def get_text_by_ms(event,result):
     del img_nad,img,model
     gc.collect()
     
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=text))
+    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=text))
     return text
 
 def detect_who(faceNumLabel):
