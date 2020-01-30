@@ -95,13 +95,10 @@ def get_text_by_ms(event,result):
     print('***predict***',predict)
     faceNumLabel=np.argmax(predict)
     score = np.max(predict)
-    if int(score) < 0.7 :
-        text = detect_who(faceNumLabel)
-        score = '{:.1%}'.format(score)
-        text = text + ':' + score   
-    else:
-        text = '犬じゃない気がします・・・'
-        
+    text = detect_who(faceNumLabel)
+    score = '{:.1%}'.format(score)
+    text = text + ':' + score   
+            
     print('***text***',text)
     
     del img_nad,img,model
