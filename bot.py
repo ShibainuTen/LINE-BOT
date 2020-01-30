@@ -98,6 +98,7 @@ def get_text_by_ms(event,result):
     score = '{:.2%}'.format(score)
     if score > 70 :
         text = detect_who(faceNumLabel)
+        text = text ,':' , score , '%'
     else:
         text = '犬じゃない気がします・・・'
     print('***text***',text)
