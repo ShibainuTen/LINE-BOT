@@ -96,7 +96,7 @@ def get_text_by_ms(event,result):
     faceNumLabel=np.argmax(predict)
     score = np.max(predict)
     score = '{:.2%}'.format(score)
-    if score > 70 :
+    if int(score) > 70 :
         text = detect_who(faceNumLabel)
         text = text ,':' , score , '%'
     else:
