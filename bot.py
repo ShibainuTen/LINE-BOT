@@ -101,6 +101,7 @@ def get_text_by_ms(event,result):
         text = text + ':' + score   
     else:
         text = '犬じゃない気がします・・・'
+        
     print('***text***',text)
     
     del img_nad,img,model
