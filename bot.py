@@ -95,10 +95,10 @@ def get_text_by_ms(event,result):
     print('***predict***',predict)
     faceNumLabel=np.argmax(predict)
     score = np.max(predict)
-    score = '{:.2%}'.format(score)
     if int(score) > 70 :
         text = detect_who(faceNumLabel)
-        text = text ,':' , score , '%'
+        score = '{:.1%}'.format(score)
+        text = text ,':' , score 
     else:
         text = '犬じゃない気がします・・・'
     print('***text***',text)
