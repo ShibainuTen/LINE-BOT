@@ -83,7 +83,7 @@ def get_text_by_ms(event,result):
     global model
 
     # model をロードする
-    model = load_model('./acc_89-.h5')
+    model = load_model('./*.h5')
     
     # 0-1に変換
     img_nad = (img_to_array(img)/255)
